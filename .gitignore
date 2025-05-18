@@ -1,0 +1,4 @@
+# Ignore generated websites content
+/generated_sites/*.html
+/generated_sites/sites.json
+__pycache__/
