@@ -5,9 +5,17 @@
     <title>Website Builder</title>
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <style>
-     iframe {
+        iframe {
             border: 0;
             width: 100%;
+        }
+
+        .preview-section {
+            width: 80%;
+            margin: 2rem auto;
+            background-color: #f8f9fa; /* light gray */
+            border-radius: 0.5rem;
+            padding: 1rem;
         }
     </style>
 </head>
@@ -20,22 +28,18 @@
     </div>
     <button type="submit" class="btn btn-primary">Generate</button>
 </form>
-<h2 class="mb-3">Previously Generated Sites</h2>
-<div class="row row-cols-1 row-cols-md-2 g-5">
-    {% for site in sites %}
-    <div class="col">
-        <div class="card h-100 shadow-sm">
-            <iframe src="/sites/{{ site.file }}" class="card-img-top" height="300"></iframe>
-            <div class="card-body">
-                <h5 class="card-title">{{ site.file }}</h5>
-                <p class="card-text">{{ site.prompt }}</p>
-                <a href="/sites/{{ site.file }}" target="_blank" class="btn btn-primary btn-sm">Open Site</a>
-            </div>
-        </div>
+<h2 class="mb-3 text-center">Previously Generated Sites</h2>
+{% for site in sites %}
+<div class="preview-section shadow-sm">
+    <iframe src="/sites/{{ site.file }}" style="height:60vh;"></iframe>
+    <div class="mt-2">
+        <h5>{{ site.file }}</h5>
+        <p>{{ site.prompt }}</p>
+        <a href="/sites/{{ site.file }}" target="_blank" class="btn btn-primary btn-sm">Open Site</a>
     </div>
-    {% else %}
-    <p>No sites generated yet.</p>
-    {% endfor %}
 </div>
+{% else %}
+<p>No sites generated yet.</p>
+{% endfor %}
 </body>
 </html>
