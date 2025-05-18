@@ -12,6 +12,7 @@ app = FastAPI()
 # Mount static files to serve generated sites and local libraries
 app.mount('/static', StaticFiles(directory='static'), name='static')
 app.mount('/sites', StaticFiles(directory='generated_sites'), name='sites')
+app.mount('/assets', StaticFiles(directory='assets'), name='assets')
 
 # Directory to store generation metadata
 DATA_FILE = 'generated_sites/sites.json'
@@ -37,8 +38,9 @@ async def generate(request: Request, prompt: str = Form(...)):
     """Generate website HTML/CSS/JS using OpenAI based on user prompt."""
     client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     system_message = (
-        "You are a helpful assistant that generates a single page hotel website. "
-        "The site must be mobile first, responsive, and include Bootstrap.")
+        "You generate short JSON snippets for a hotel landing page. "
+        "Return only JSON with keys: title, hero_heading, hero_text, "
+        "about_heading, about_text.")
     user_message = f"User description: {prompt}"
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -47,8 +49,10 @@ async def generate(request: Request, prompt: str = Form(...)):
             {"role": "user", "content": user_message}
         ],
         temperature=0.7,
+        response_format={"type": "json_object"},
     )
-    content = response.choices[0].message.content
+    data = json.loads(response.choices[0].message.content)
+    content = templates.get_template('page.html').render(**data)
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     filename = f'site_{timestamp}.html'
     filepath = os.path.join('generated_sites', filename)
