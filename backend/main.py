@@ -38,9 +38,18 @@ async def generate(request: Request, prompt: str = Form(...)):
     """Generate website HTML/CSS/JS using OpenAI based on user prompt."""
     client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     system_message = (
-        "You generate short JSON snippets for a hotel landing page. "
+        "You generate JSON snippets for a rich hotel landing page. "
         "Return only JSON with keys: title, hero_heading, hero_text, "
-        "about_heading, about_text, rooms_heading, rooms_text.")
+        "tagline_heading, tagline_text, "
+        "feature1_title, feature1_text, feature2_title, feature2_text, "
+        "feature3_title, feature3_text, feature4_title, feature4_text, "
+        "casino_heading, casino_text, link1_title, link2_title, "
+        "extended1_title, extended1_text, extended1_button, "
+        "extended2_title, extended2_text, extended2_button, "
+        "extended3_title, extended3_text, extended3_button, "
+        "extended4_title, extended4_text, extended4_button, "
+        "benefits_heading, benefit1_title, benefit1_text, "
+        "benefit2_title, benefit2_text, benefit3_title, benefit3_text.")
     user_message = f"User description: {prompt}"
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -52,7 +61,7 @@ async def generate(request: Request, prompt: str = Form(...)):
         response_format={"type": "json_object"},
     )
     data = json.loads(response.choices[0].message.content)
-    content = templates.get_template('page.html').render(**data)
+    content = templates.get_template('template_v2.html').render(**data)
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     filename = f'site_{timestamp}.html'
     filepath = os.path.join('generated_sites', filename)
