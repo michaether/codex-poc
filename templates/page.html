@@ -37,9 +37,18 @@
     </style>
 </head>
 <body>
+    <div id="top"></div>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <span class="navbar-brand">{{ title }}</span>
+            <a class="navbar-brand" href="#top">{{ title }}</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#rooms">Available Rooms</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -52,6 +61,13 @@
         <div class="container">
             <h2>{{ about_heading }}</h2>
             <p>{{ about_text }}</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="rooms">
+        <div class="container">
+            <h2>{{ rooms_heading }}</h2>
+            <p>{{ rooms_text }}</p>
         </div>
     </section>
 

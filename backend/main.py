@@ -40,7 +40,7 @@ async def generate(request: Request, prompt: str = Form(...)):
     system_message = (
         "You generate short JSON snippets for a hotel landing page. "
         "Return only JSON with keys: title, hero_heading, hero_text, "
-        "about_heading, about_text.")
+        "about_heading, about_text, rooms_heading, rooms_text.")
     user_message = f"User description: {prompt}"
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
