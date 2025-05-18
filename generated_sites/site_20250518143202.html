@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Casino China</title>
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #111;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.hero {
+  background: url('hero-bg.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.cta {
+  background-color: #f7c948;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.section-title {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.section-title h2 {
+  color: goldenrod;
+  margin-bottom: 0.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px dashed goldenrod;
+  padding: 1rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.casino-highlight {
+  background: url('casino-bg.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.image-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+}
+
+.image-card h3 {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.extended-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card .cta.small {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.benefits {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.benefits h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background-color: #fff;
+  border: 1px dashed goldenrod;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-social a {
+  margin-right: 0.5rem;
+}
+
+.footer-social img {
+  width: 20px;
+  height: 20px;
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Hotel Casino China</div>
+      <ul class="nav-links">
+        <li>Who We Are</li>
+        <li>Waterside Retreats</li>
+        <li>Into the Forest</li>
+        <li>Canada PlayStay</li>
+        <li>Promotions ▼</li>
+        <li>Get in Touch</li>
+      </ul>
+    </nav>
+    <section class="hero">
+      <h1>Welcome to Hotel Casino China</h1>
+      <p>Experience luxury and excitement in the heart of China</p>
+      <button class="cta">Take a Look</button>
+    </section>
+  </header>
+
+  <main>
+    <section class="section-title">
+      <h2>A Fusion of Elegance and Entertainment</h2>
+      <p>Indulge in opulence while enjoying world-class casino entertainment</p>
+    </section>
+
+    <section class="feature-grid">
+      <div class="card">
+        <img src="hotel1.jpg" alt="Adventure-Focused">
+        <h3>Luxurious Accommodation</h3>
+        <p>Elegant rooms and suites designed for your comfort and style</p>
+      </div>
+      <div class="card">
+        <img src="hotel2.jpg" alt="Refined & Exciting">
+        <h3>Casino Experience</h3>
+        <p>State-of-the-art casino offering a wide range of games and entertainment options</p>
+      </div>
+      <div class="card">
+        <img src="hotel3.jpg" alt="Concise & Punchy">
+        <h3>Spa Services</h3>
+        <p>Relax and rejuvenate with our luxurious spa treatments and wellness therapies</p>
+      </div>
+      <div class="card">
+        <img src="hotel4.jpg" alt="Ultimate Thrills">
+        <h3>Gourmet Dining</h3>
+        <p>Savor exquisite culinary delights at our upscale restaurants and bars</p>
+      </div>
+    </section>
+
+    <section class="casino-highlight">
+      <h2>Casino Experience at Hotel Casino China</h2>
+      <p>Immerse yourself in the thrill of gaming and entertainment at our world-class casino</p>
+      <button class="cta">View Top Casino Resorts</button>
+    </section>
+
+    <section class="image-links">
+      <div class="image-card">
+        <img src="retreat1.jpg" alt="Waterside Retreats">
+        <h3>Book Your Stay</h3>
+      </div>
+      <div class="image-card">
+        <img src="retreat2.jpg" alt="Into the Forest">
+        <h3>Explore Our Casino</h3>
+      </div>
+    </section>
+  </main>
+  <section class="extended-grid">
+  <div class="card">
+    <img src="waterside.jpg" alt="Waterside Retreats">
+    <h3>Spa Retreat</h3>
+    <p>Pamper yourself with our range of spa treatments and massages</p>
+    <button class="cta small">Discover Spa Services</button>
+  </div>
+  <div class="card">
+    <img src="forest.jpg" alt="Into the Forest">
+    <h3>Fine Dining</h3>
+    <p>Experience culinary excellence at our gourmet restaurants and bars</p>
+    <button class="cta small">View Dining Options</button>
+  </div>
+  <div class="card">
+    <img src="playstay.jpg" alt="Canada PlayStay">
+    <h3>Entertainment Events</h3>
+    <p>Stay updated on our exciting lineup of entertainment events and shows</p>
+    <button class="cta small">See Event Calendar</button>
+  </div>
+  <div class="card">
+    <img src="casino-royale.jpg" alt="Casino Royale">
+    <h3>Exclusive Offers</h3>
+    <p>Unlock special deals and packages for your next stay at Hotel Casino China</p>
+    <button class="cta small">View Offers</button>
+  </div>
+  </section>
+
+<section class="benefits">
+  <h2>Benefits of Staying at Hotel Casino China</h2>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <h3>Luxury Accommodation</h3>
+      <p>Enjoy lavish rooms and suites with modern amenities and stunning views</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Casino Entertainment</h3>
+      <p>Access to a diverse range of casino games and entertainment options</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Spa and Wellness</h3>
+      <p>Relax and rejuvenate with our top-notch spa services and wellness facilities</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">Hotel Casino China</div>
+    <div class="footer-links">
+      <ul>
+        <li>Who We Are</li>
+        <li>Waterside Retreats</li>
+        <li>Into the Forest</li>
+        <li>Canada PlayStay</li>
+        <li>Promotions ▼</li>
+        <li>Get in Touch</li>
+      </ul>
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Terms and Conditions</li>
+        <li>Disclaimer</li>
+        <li>Site Map</li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <a href="#"><img src="fb-icon.svg" alt="Facebook"></a>
+      <a href="#"><img src="twitter-icon.svg" alt="Twitter"></a>
+      <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Casino Paris</title>
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #111;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.hero {
+  background: url('hero-bg.webp') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.cta {
+  background-color: #f7c948;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.section-title {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.section-title h2 {
+  color: goldenrod;
+  margin-bottom: 0.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px dashed goldenrod;
+  padding: 1rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.casino-highlight {
+  background: url('casino-bg.webp') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.image-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+}
+
+.image-card h3 {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.extended-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card .cta.small {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.benefits {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.benefits h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background-color: #fff;
+  border: 1px dashed goldenrod;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-social a {
+  margin-right: 0.5rem;
+}
+
+.footer-social img {
+  width: 20px;
+  height: 20px;
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Hotel Casino Paris</div>
+      <ul class="nav-links">
+        <li><a href="who_we_are.html">Who We Are</a></li>
+        <li><a href="waterside_retreats.html">Waterside Retreats</a></li>
+        <li><a href="into_the_forest.html">Into the Forest</a></li>
+        <li><a href="canada_playstay.html">Canada PlayStay</a></li>
+        <li><a href="promotions.html">Promotions ▼</a></li>
+        <li><a href="get_in_touch.html">Get in Touch</a></li>
+      </ul>
+    </nav>
+    <section class="hero">
+      <h1>Welcome to Hotel Casino Paris</h1>
+      <p>Experience luxury and excitement at our boutique hotel with a casino twist.</p>
+      <button class="cta">Take a Look</button>
+    </section>
+  </header>
+
+  <main>
+    <section class="section-title">
+      <h2>Luxury Accommodation with Casino Thrills</h2>
+      <p>Immerse yourself in the vibrant atmosphere of our casino-centric hotel, where elegance meets entertainment.</p>
+    </section>
+
+    <section class="feature-grid">
+      <div class="card">
+        <img src="hotel1.webp" alt="Adventure-Focused">
+        <h3>Elegant Rooms and Suites</h3>
+        <p>Indulge in our beautifully designed rooms and suites offering comfort and style.</p>
+      </div>
+      <div class="card">
+        <img src="hotel2.webp" alt="Refined & Exciting">
+        <h3>Casino and Gaming</h3>
+        <p>Try your luck at our casino with a range of exciting games and entertainment options.</p>
+      </div>
+      <div class="card">
+        <img src="hotel3.jpg" alt="Concise & Punchy">
+        <h3>Relaxing Spa Services</h3>
+        <p>Unwind and rejuvenate at our luxurious spa with a range of pampering treatments.</p>
+      </div>
+      <div class="card">
+        <img src="hotel4.jpg" alt="Ultimate Thrills">
+        <h3>Fine Dining Experience</h3>
+        <p>Savor exquisite cuisine at our restaurant, offering a culinary journey for your taste buds.</p>
+      </div>
+    </section>
+
+    <section class="casino-highlight">
+      <h2>Casino Excitement Awaits</h2>
+      <p>Experience the thrill of the casino with our wide selection of games and entertainment.</p>
+      <button class="cta">View Top Casino Resorts</button>
+    </section>
+
+    <section class="image-links">
+      <div class="image-card">
+        <img src="retreat1.webp" alt="Waterside Retreats">
+        <h3>Book Your Stay</h3>
+      </div>
+      <div class="image-card">
+        <img src="retreat2.webp" alt="Into the Forest">
+        <h3>Explore Our Casino</h3>
+      </div>
+    </section>
+  </main>
+  <section class="extended-grid">
+  <div class="card">
+    <img src="waterside.webp" alt="Waterside Retreats">
+    <h3>Exclusive Spa Packages</h3>
+    <p>Indulge in our spa services with exclusive packages for a truly relaxing experience.</p>
+    <button class="cta small">Learn More</button>
+  </div>
+  <div class="card">
+    <img src="forest.webp" alt="Into the Forest">
+    <h3>Gourmet Dining Options</h3>
+    <p>Discover our gourmet dining options crafted by our talented chefs for a culinary delight.</p>
+    <button class="cta small">View Menu</button>
+  </div>
+  <div class="card">
+    <img src="playstay.webp" alt="Canada PlayStay">
+    <h3>Special Casino Events</h3>
+    <p>Stay updated on our special casino events and promotions for a thrilling experience.</p>
+    <button class="cta small">See Events</button>
+  </div>
+  <div class="card">
+    <img src="casino-royale.webp" alt="Casino Royale">
+    <h3>Private Events and Functions</h3>
+    <p>Host your private events and functions at our hotel for a memorable experience.</p>
+    <button class="cta small">Inquire Now</button>
+  </div>
+  </section>
+
+<section class="benefits">
+  <h2>Benefits of Choosing Hotel Casino Paris</h2>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <h3>Luxurious Accommodation</h3>
+      <p>Experience luxury and comfort in our elegantly designed rooms and suites.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Convenient Casino Access</h3>
+      <p>Enjoy easy access to our exciting casino games and entertainment options.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Relaxation and Entertainment</h3>
+      <p>Indulge in a perfect blend of relaxation at our spa and entertainment at the casino.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">Hotel Casino Paris</div>
+    <div class="footer-links">
+      <ul>
+        <li><a href="who_we_are.html">Who We Are</a></li>
+        <li><a href="waterside_retreats.html">Waterside Retreats</a></li>
+        <li><a href="into_the_forest.html">Into the Forest</a></li>
+        <li><a href="canada_playstay.html">Canada PlayStay</a></li>
+        <li><a href="promotions.html">Promotions ▼</a></li>
+        <li><a href="get_in_touch.html">Get in Touch</a></li>
+      </ul>
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Terms and Conditions</li>
+        <li>Disclaimer</li>
+        <li>Site Map</li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <a href="#"><img src="fb-icon.svg" alt="Facebook"></a>
+      <a href="#"><img src="twitter-icon.svg" alt="Twitter"></a>
+      <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
