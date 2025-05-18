@@ -18,7 +18,7 @@ This proof of concept demonstrates a very simple hotel website generator. A Fast
    ```bash
    uvicorn backend.main:app --reload
    ```
-3. Open `http://localhost:8000` in your browser.
+3. Open `http://localhost:8085` in your browser.
 
 Generated sites are saved in the `generated_sites/` folder. A minimal Bootstrap CSS file is included in `static/` for offline use. Images referenced by the generated pages live in the `assets/` directory, served at `/assets`. The HTML layout lives in `templates/page.html`; OpenAI only supplies the text content inserted into that template.
 
