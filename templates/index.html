@@ -5,7 +5,10 @@
     <title>Website Builder</title>
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <style>
-        iframe { border: 0; }
+     iframe {
+            border: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="container py-4">
@@ -18,11 +21,11 @@
     <button type="submit" class="btn btn-primary">Generate</button>
 </form>
 <h2 class="mb-3">Previously Generated Sites</h2>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<div class="row row-cols-1 row-cols-md-2 g-5">
     {% for site in sites %}
     <div class="col">
         <div class="card h-100 shadow-sm">
-            <iframe src="/sites/{{ site.file }}" class="card-img-top" height="200"></iframe>
+            <iframe src="/sites/{{ site.file }}" class="card-img-top" height="300"></iframe>
             <div class="card-body">
                 <h5 class="card-title">{{ site.file }}</h5>
                 <p class="card-text">{{ site.prompt }}</p>
