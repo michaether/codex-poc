@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Website Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <style>
+        body {
+            background-color: #343541;
+            color: #ececf1;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #19c37d;
+            border-color: #19c37d;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #0fa57a;
+            border-color: #0fa57a;
+        }
+
+        textarea.form-control {
+            background-color: #40414f;
+            color: #ececf1;
+            border: 1px solid #565b6a;
+        }
+
+        textarea.form-control:focus {
+            background-color: #40414f;
+            color: #ececf1;
+            border-color: #19c37d;
+            box-shadow: none;
+        }
+
         iframe {
             border: 0;
             width: 100%;
@@ -13,7 +45,7 @@
         .preview-section {
             width: 80%;
             margin: 2rem auto;
-            background-color: #f8f9fa; /* light gray */
+            background-color: #202123;
             border-radius: 0.5rem;
             padding: 1rem;
         }
