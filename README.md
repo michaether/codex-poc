@@ -5,6 +5,7 @@ This proof of concept demonstrates a very simple hotel website generator. A Fast
 ## Requirements
 
 - Python 3.10+
+- openai>=1.0.0
 - An OpenAI API key (set `OPENAI_API_KEY` environment variable)
 
 ## Setup
