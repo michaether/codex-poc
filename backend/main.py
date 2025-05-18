@@ -35,16 +35,18 @@ async def index(request: Request):
 @app.post('/generate', response_class=HTMLResponse)
 async def generate(request: Request, prompt: str = Form(...)):
     """Generate website HTML/CSS/JS using OpenAI based on user prompt."""
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     system_message = (
         "You are a helpful assistant that generates a single page hotel website. "
-        "The site must be mobile first, responsive, and include Bootstrap." )
+        "The site must be mobile first, responsive, and include Bootstrap.")
     user_message = f"User description: {prompt}"
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content": system_message},
-                 {"role": "user", "content": user_message}],
-        temperature=0.7
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message}
+        ],
+        temperature=0.7,
     )
     content = response.choices[0].message.content
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
