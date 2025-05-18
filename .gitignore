@@ -2,3 +2,8 @@
 /generated_sites/*.html
 /generated_sites/sites.json
 __pycache__/
+
+.git
+
+
+venv
