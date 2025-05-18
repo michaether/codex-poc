@@ -32,7 +32,7 @@ templates = Jinja2Templates(directory='templates')
 # Home page: display form and list of generated sites
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse('index.html', {'request': request, 'sites': sites_data})
+    return templates.TemplateResponse('index.html', {'request': request, 'sites': list(reversed(sites_data))})
 
 # POST endpoint to generate site using OpenAI
 @app.post('/generate', response_class=HTMLResponse)
