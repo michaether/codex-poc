@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Website Builder</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+<body class="container py-4">
+<h1 class="mb-4">Hotel Website Generator</h1>
+<form method="post" action="/generate">
+    <div class="mb-3">
+        <label for="prompt" class="form-label">Describe your hotel website:</label>
+        <textarea class="form-control" id="prompt" name="prompt" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Generate</button>
+</form>
+<hr>
+<h2>Previously Generated Sites</h2>
+<ul>
+    {% for site in sites %}
+    <li><a href="/sites/{{ site.file }}" target="_blank">{{ site.file }}</a> - {{ site.prompt }}</li>
+    {% else %}
+    <li>No sites generated yet.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
