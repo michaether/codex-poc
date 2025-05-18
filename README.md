@@ -21,3 +21,5 @@ This proof of concept demonstrates a very simple hotel website generator. A Fast
 3. Open `http://localhost:8000` in your browser.
 
 Generated sites are saved in the `generated_sites/` folder. A minimal Bootstrap CSS file is included in `static/` for offline use.
+
+OPENAI_API_KEY=your-key-here uvicorn backend.main:app --reload
