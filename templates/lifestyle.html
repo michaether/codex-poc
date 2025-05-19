@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Health & Lifestyle Blog</title>
+  <title>{{ title }}</title>
   <style>
     * {
   margin: 0;
@@ -204,7 +204,7 @@ body {
 <body>
 
   <header class="site-header">
-    <div class="logo">GLASS CRADLE</div>
+    <div class="logo">{{ title }}</div>
     <nav class="nav-menu">
       <a href="#">Lifestyle</a>
       <a href="#">Health</a>
@@ -215,28 +215,28 @@ body {
 
   <main class="main-content">
     <section class="hero-article">
-      <img src="hero-baby.jpg" alt="Baby Temperature">
+      <img src="hero-baby.jpg" alt="Hero Image">
       <div class="overlay-text">
         <span class="category">Health</span>
-        <h1>Knowing and Managing a Low Body Temperature in Babies</h1>
-        <p class="meta">By Nancy Ward · May 17, 2025</p>
+        <h1>{{ hero_heading }}</h1>
+        <p class="meta">{{ hero_text }}</p>
       </div>
     </section>
 
     <section class="article-grid">
       <div class="section-left">
-        <h2 class="section-title">Health</h2>
+        <h2 class="section-title">{{ tagline_heading }}</h2>
         <div class="grid-row">
           <div class="article-card">
-            <img src="mri.jpg" alt="Migraine">
-            <h3>Signs It’s Time to Find A New Migraine Doctor</h3>
-            <p>Most people have sessions with headache clinics and specialists before settling down with...</p>
+            <img src="mri.jpg" alt="Article 1">
+            <h3>{{ feature1_title }}</h3>
+            <p>{{ feature1_text }}</p>
             <a href="#" class="read-more">Read More</a>
           </div>
           <div class="article-card">
-            <img src="stretch.jpg" alt="Massage">
-            <h3>When Should You Consider Sports Massage?</h3>
-            <p>There are huge health benefits for anyone who takes up regular physical activity...</p>
+            <img src="stretch.jpg" alt="Article 2">
+            <h3>{{ feature2_title }}</h3>
+            <p>{{ feature2_text }}</p>
             <a href="#" class="read-more">Read More</a>
           </div>
         </div>
@@ -248,110 +248,109 @@ body {
           <li>
             <img src="ransomware.jpg" alt="">
             <div>
-              <p class="link">Damages and Dilemma Caused by Ransomware Attacks</p>
-              <small>May 18, 2025</small>
+              <p class="link">{{ feature3_title }}</p>
+              <small>{{ feature3_text }}</small>
             </div>
           </li>
           <li>
             <img src="xbox.jpg" alt="">
             <div>
-              <p class="link">How PS5 Differentiated Itself From Xbox Series X</p>
-              <small>May 18, 2025</small>
+              <p class="link">{{ feature4_title }}</p>
+              <small>{{ feature4_text }}</small>
             </div>
           </li>
           <li>
             <img src="console.jpg" alt="">
             <div>
-              <p class="link">Battle For The Ultimate Next-Generation Console</p>
-              <small>May 18, 2025</small>
+              <p class="link">{{ link1_title }}</p>
+              <small>{{ link2_title }}</small>
             </div>
           </li>
           <li>
             <img src="netflix.jpg" alt="">
             <div>
-              <p class="link">3 Top Ways to Stream Netflix on TV Screen</p>
-              <small>May 18, 2025</small>
+              <p class="link">{{ extended1_title }}</p>
+              <small>{{ extended1_text }}</small>
             </div>
           </li>
           <li>
             <img src="ipad.jpg" alt="">
             <div>
-              <p class="link">Differences Between iPad And Fire Tablet You Should Know</p>
-              <small>May 17, 2025</small>
+              <p class="link">{{ extended2_title }}</p>
+              <small>{{ extended2_text }}</small>
             </div>
           </li>
         </ul>
       </aside>
     </section>
 
-    <section class="content-section">
-  <h2 class="section-title">Lifestyle</h2>
+<section class="content-section">
+  <h2 class="section-title">{{ extended1_title }}</h2>
   <div class="grid-row">
-    <!-- Repeat articles from Lifestyle -->
     <div class="article-card">
       <img src="ransomware.jpg" alt="">
-      <h3>Damages and Dilemma Caused by Ransomware Attacks</h3>
-      <p>The attackers have adapted a new method called double distortion...</p>
-      <a href="#" class="read-more">Read More</a>
+      <h3>{{ extended1_title }}</h3>
+      <p>{{ extended1_text }}</p>
+      <a href="#" class="read-more">{{ extended1_button }}</a>
     </div>
     <div class="article-card">
       <img src="mri.jpg" alt="">
-      <h3>Signs It’s Time To Find A New Migraine Doctor</h3>
-      <p>Most people have sessions with specialists before settling down...</p>
-      <a href="#" class="read-more">Read More</a>
+      <h3>{{ extended2_title }}</h3>
+      <p>{{ extended2_text }}</p>
+      <a href="#" class="read-more">{{ extended2_button }}</a>
     </div>
     <div class="article-card">
       <img src="stretch.jpg" alt="">
-      <h3>When Should You Consider Sports Massage?</h3>
-      <p>There are huge health benefits for anyone who takes up physical activity...</p>
-      <a href="#" class="read-more">Read More</a>
+      <h3>{{ extended3_title }}</h3>
+      <p>{{ extended3_text }}</p>
+      <a href="#" class="read-more">{{ extended3_button }}</a>
     </div>
   </div>
 </section>
 
 <section class="content-section">
-  <h2 class="section-title">Pets</h2>
+  <h2 class="section-title">{{ extended4_title }}</h2>
   <div class="grid-row">
     <div class="article-card">
       <img src="elderly-dog.jpg" alt="">
-      <h3>The Best Pets For Your Elderly Parents</h3>
-      <p>If you are fit enough to care for yourself, you are fit enough for a dog...</p>
+      <h3>{{ benefit1_title }}</h3>
+      <p>{{ benefit1_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
     <div class="article-card">
       <img src="rabbit.jpg" alt="">
-      <h3>Loss of Appetite in Pet Rabbits</h3>
-      <p>Rabbits need to feed regularly; it's essential to provide them with...</p>
+      <h3>{{ benefit2_title }}</h3>
+      <p>{{ benefit2_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
     <div class="article-card">
       <img src="aquarium.jpg" alt="">
-      <h3>Buying The Right Aquarium For A Child Or A Teen</h3>
-      <p>Watching fish swim in an aquarium can relieve stress and calm nerves...</p>
+      <h3>{{ benefit3_title }}</h3>
+      <p>{{ benefit3_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
   </div>
 </section>
 
 <section class="content-section">
-  <h2 class="section-title">Tech</h2>
+  <h2 class="section-title">{{ casino_heading }}</h2>
   <div class="grid-row">
     <div class="article-card">
       <img src="ransomware.jpg" alt="">
-      <h3>Damages and Dilemma Caused by Ransomware Attacks</h3>
-      <p>New double distortion methods are putting pressure on companies...</p>
+      <h3>{{ casino_heading }}</h3>
+      <p>{{ casino_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
     <div class="article-card">
       <img src="ps5-vs-xbox.jpg" alt="">
-      <h3>How PS5 Differentiated Itself From Xbox Series X</h3>
-      <p>Both are new-gen consoles, but PS5 made key power and design moves...</p>
+      <h3>{{ link1_title }}</h3>
+      <p>{{ extended4_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
     <div class="article-card">
       <img src="gaming-console.jpg" alt="">
-      <h3>Battle For The Ultimate Next-Generation Console</h3>
-      <p>Visuals, performance, and immersion — which console takes the crown?</p>
+      <h3>{{ link2_title }}</h3>
+      <p>{{ tagline_text }}</p>
       <a href="#" class="read-more">Read More</a>
     </div>
   </div>
