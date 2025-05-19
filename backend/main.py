@@ -11,6 +11,7 @@ import shutil
 import base64
 import io
 import zipfile
+import random
 
 app = FastAPI()
 
@@ -67,7 +68,6 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
     )
     data = json.loads(response.choices[0].message.content)
     template_file = 'hotel.html' if template == 'hotel' else 'lifestyle.html'
-    content = templates.get_template(template_file).render(**data)
 
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     # extract hotel name after "hotel name:" and slugify
@@ -79,48 +79,45 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
     folder_path = os.path.join('generated_sites', folder_name)
     os.makedirs(folder_path, exist_ok=True)
 
+    # copy required assets into the folder
+    if template == 'hotel':
+        asset_dir = os.path.join('assets', 'hotel')
+        files = [f for f in os.listdir(asset_dir)
+                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
+                 and not f.endswith('Zone.Identifier')]
+        selected = random.sample(files, min(len(files), 12))
+        hero_bg = selected[0]
+        feature_imgs = selected[1:5]
+        retreat_imgs = selected[5:7]
+        extended_imgs = selected[7:11]
+        casino_bg = selected[11] if len(selected) > 11 else selected[0]
+
+        for name in selected:
+            shutil.copy(os.path.join(asset_dir, name), os.path.join(folder_path, name))
+
+        data.update({
+            'hero_bg': hero_bg,
+            'casino_bg': casino_bg,
+            'feature_imgs': feature_imgs,
+            'retreat_imgs': retreat_imgs,
+            'extended_imgs': extended_imgs,
+        })
+    else:
+        asset_dir = os.path.join('assets', 'lifestyle')
+        files = [f for f in os.listdir(asset_dir)
+                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
+                 and not f.endswith('Zone.Identifier')]
+        selected = random.sample(files, min(len(files), 17))
+        for name in selected:
+            shutil.copy(os.path.join(asset_dir, name), os.path.join(folder_path, name))
+        data['images'] = selected
+
+    # render page with selected images
+    content = templates.get_template(template_file).render(**data)
+
     filepath = os.path.join(folder_path, 'index.html')
     with open(filepath, 'w') as f:
         f.write(content)
-
-    # copy required assets into the folder
-    if template == 'hotel':
-        image_map = {
-            'hero-bg.webp': 'spa-hotel-hero-768x352.webp',
-            'casino-bg.webp': 'casino-hotels-6-768x358.webp',
-            'hotel1.webp': 'Casino-Hotels-4-150x150.webp',
-            'hotel2.webp': 'Casino-Hotels-5-150x150.webp',
-            'hotel3.jpg': 'pexels-olly-3786784-300x200.jpg',
-            'hotel4.jpg': 'pexels-olly-3786784-768x512.jpg',
-            'retreat1.webp': '21-Club-Steak-Seafood-300x104.webp',
-            'retreat2.webp': 'Baccarat-300x104.webp',
-            'waterside.webp': 'Banff-Caribou-Lodge-300x224.webp',
-            'forest.webp': 'Bar-Barista-1-300x125.webp',
-            'playstay.webp': 'Blackjack-150x150.webp',
-            'casino-royale.webp': 'Casino-Hotels-5.webp',
-        }
-        for dest, src in image_map.items():
-            src_path = os.path.join('assets', 'hotel', src)
-            if os.path.exists(src_path):
-                shutil.copy(src_path, os.path.join(folder_path, dest))
-    else:
-        lifestyle_imgs = [
-            'hero-baby.jpg', 'mri.jpg', 'stretch.jpg', 'ransomware.jpg',
-            'xbox.jpg', 'console.jpg', 'netflix.jpg', 'ipad.jpg',
-            'elderly-dog.jpg', 'rabbit.jpg', 'aquarium.jpg',
-            'ps5-vs-xbox.jpg', 'gaming-console.jpg'
-        ]
-        placeholder = base64.b64decode(
-            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+g8AAwUBAO+jbmwAAAAASUVORK5CYII='
-        )
-        for name in lifestyle_imgs:
-            src_path = os.path.join('assets', 'lifestyle', name)
-            dest_path = os.path.join(folder_path, name)
-            if os.path.exists(src_path):
-                shutil.copy(src_path, dest_path)
-            else:
-                with open(dest_path, 'wb') as f:
-                    f.write(placeholder)
 
     # create simple svg icons
     icons = {
@@ -221,5 +218,27 @@ async def preview_template(template: str):
         'benefit3_text': 'Benefit 3 text',
     }
     template_file = 'hotel.html' if template == 'hotel' else 'lifestyle.html'
+
+    if template == 'hotel':
+        asset_dir = os.path.join('assets', 'hotel')
+        files = [f for f in os.listdir(asset_dir)
+                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
+                 and not f.endswith('Zone.Identifier')]
+        selected = random.sample(files, min(len(files), 12))
+        demo.update({
+            'hero_bg': '/assets/hotel/' + selected[0],
+            'feature_imgs': ['/assets/hotel/' + f for f in selected[1:5]],
+            'retreat_imgs': ['/assets/hotel/' + f for f in selected[5:7]],
+            'extended_imgs': ['/assets/hotel/' + f for f in selected[7:11]],
+            'casino_bg': '/assets/hotel/' + (selected[11] if len(selected) > 11 else selected[0]),
+        })
+    else:
+        asset_dir = os.path.join('assets', 'lifestyle')
+        files = [f for f in os.listdir(asset_dir)
+                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
+                 and not f.endswith('Zone.Identifier')]
+        selected = random.sample(files, min(len(files), 17))
+        demo['images'] = ['/assets/lifestyle/' + f for f in selected]
+
     html = templates.get_template(template_file).render(**demo)
     return HTMLResponse(html)
