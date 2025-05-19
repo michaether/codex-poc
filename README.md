@@ -27,4 +27,6 @@ OpenAI now returns text for many sections such as feature cards and benefits whi
 
 When selecting a hero image for a site, choose a file that is at least **300 KB**. Images smaller than this may appear grainy when used full width.
 
+For the **lifestyle** template the hero image is fixed to `hero_1.jpg`. This file is automatically copied into each generated site that uses the lifestyle template.
+
 OPENAI_API_KEY=your-key-here uvicorn backend.main:app --reload
