@@ -22,6 +22,7 @@ app.mount('/assets', StaticFiles(directory='assets'), name='assets')
 
 # Directory to store generation metadata
 DATA_FILE = 'generated_sites/sites.json'
+CACHE_FILE = 'generated_sites/openai_cache.json'
 os.makedirs('generated_sites', exist_ok=True)
 
 # Load existing metadata if any
@@ -30,6 +31,13 @@ if os.path.exists(DATA_FILE):
         sites_data = json.load(f)
 else:
     sites_data = []
+
+# Load cached OpenAI responses if any
+if os.path.exists(CACHE_FILE):
+    with open(CACHE_FILE, 'r') as f:
+        cache_data = json.load(f)
+else:
+    cache_data = {}
 
 templates = Jinja2Templates(directory='templates')
 
@@ -57,16 +65,23 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         "benefits_heading, benefit1_title, benefit1_text, "
         "benefit2_title, benefit2_text, benefit3_title, benefit3_text.")
     user_message = f"User description: {prompt}"
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": system_message},
-            {"role": "user", "content": user_message}
-        ],
-        temperature=0.7,
-        response_format={"type": "json_object"},
-    )
-    data = json.loads(response.choices[0].message.content)
+    key = f"{prompt}|{template}"
+    if key in cache_data:
+        data = cache_data[key]
+    else:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.7,
+            response_format={"type": "json_object"},
+        )
+        data = json.loads(response.choices[0].message.content)
+        cache_data[key] = data
+        with open(CACHE_FILE, 'w') as f:
+            json.dump(cache_data, f)
     # templates were moved under subfolders; update paths accordingly
     template_file = (
         'hotel/hotel_index.html'

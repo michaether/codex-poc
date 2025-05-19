@@ -29,4 +29,11 @@ When selecting a hero image for a site, choose a file that is at least **300 KB*
 
 For the **lifestyle** template the hero image is fixed to `hero_1.jpg`. This file is automatically copied into each generated site that uses the lifestyle template.
 
+### Response Caching
+
+OpenAI responses are cached in `generated_sites/openai_cache.json`. The key is the
+combination of the user prompt and selected template. If a matching entry is
+found in this file, the stored JSON is reused instead of requesting new content
+from the API. Any new completions are written back to the cache automatically.
+
 OPENAI_API_KEY=your-key-here uvicorn backend.main:app --reload
