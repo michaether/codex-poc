@@ -67,7 +67,12 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         response_format={"type": "json_object"},
     )
     data = json.loads(response.choices[0].message.content)
-    template_file = 'hotel.html' if template == 'hotel' else 'lifestyle.html'
+    # templates were moved under subfolders; update paths accordingly
+    template_file = (
+        'hotel/hotel_index.html'
+        if template == 'hotel'
+        else 'lifestyle/lifestyle_index.html'
+    )
 
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     # extract hotel name after "hotel name:" and slugify
@@ -223,7 +228,12 @@ async def preview_template(template: str):
         'benefit3_title': 'Benefit 3',
         'benefit3_text': 'Benefit 3 text',
     }
-    template_file = 'hotel.html' if template == 'hotel' else 'lifestyle.html'
+    # templates were moved under subfolders; update paths accordingly
+    template_file = (
+        'hotel/hotel_index.html'
+        if template == 'hotel'
+        else 'lifestyle/lifestyle_index.html'
+    )
 
     if template == 'hotel':
         asset_dir = os.path.join('assets', 'hotel')
