@@ -77,7 +77,8 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
 
     folder_name = f'site_{timestamp}_{slug}'
     folder_path = os.path.join('generated_sites', folder_name)
-    os.makedirs(folder_path, exist_ok=True)
+    assets_path = os.path.join(folder_path, 'assets')
+    os.makedirs(assets_path, exist_ok=True)
 
     # copy required assets into the folder
     if template == 'hotel':
@@ -93,7 +94,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         casino_bg = selected[11] if len(selected) > 11 else selected[0]
 
         for name in selected:
-            shutil.copy(os.path.join(asset_dir, name), os.path.join(folder_path, name))
+            shutil.copy(os.path.join(asset_dir, name), os.path.join(assets_path, name))
 
         data.update({
             'hero_bg': hero_bg,
@@ -109,7 +110,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
                  and not f.endswith('Zone.Identifier')]
         selected = random.sample(files, min(len(files), 17))
         for name in selected:
-            shutil.copy(os.path.join(asset_dir, name), os.path.join(folder_path, name))
+            shutil.copy(os.path.join(asset_dir, name), os.path.join(assets_path, name))
         data['images'] = selected
 
     # render page with selected images
@@ -126,7 +127,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         'youtube-icon.svg': '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="20" height="20" fill="red"/><polygon points="8,5 15,10 8,15" fill="white"/></svg>',
     }
     for name, content_str in icons.items():
-        with open(os.path.join(folder_path, name), 'w') as f:
+        with open(os.path.join(assets_path, name), 'w') as f:
             f.write(content_str)
 
     # create placeholder pages for nav links
