@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
   <style>* {
   margin: 0;
   padding: 0;
@@ -18,19 +19,16 @@ body {
 }
 
 .navbar {
-  background-color: #111;
-  color: #fff;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #343a40;
 }
 
-.navbar .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  font-size: 0.9rem;
+.navbar-nav .nav-link {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #19c37d;
 }
 
 .hero {
@@ -204,16 +202,23 @@ body {
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <div class="logo">{{ title }}</div>
-      <ul class="nav-links">
-        <li><a href="who_we_are.html">Who We Are</a></li>
-        <li><a href="waterside_retreats.html">Waterside Retreats</a></li>
-        <li><a href="into_the_forest.html">Into the Forest</a></li>
-        <li><a href="canada_playstay.html">Canada PlayStay</a></li>
-        <li><a href="promotions.html">Promotions ▼</a></li>
-        <li><a href="get_in_touch.html">Get in Touch</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{ title }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="who_we_are.html">Who We Are</a></li>
+            <li class="nav-item"><a class="nav-link" href="waterside_retreats.html">Waterside Retreats</a></li>
+            <li class="nav-item"><a class="nav-link" href="into_the_forest.html">Into the Forest</a></li>
+            <li class="nav-item"><a class="nav-link" href="canada_playstay.html">Canada PlayStay</a></li>
+            <li class="nav-item"><a class="nav-link" href="promotions.html">Promotions ▼</a></li>
+            <li class="nav-item"><a class="nav-link" href="get_in_touch.html">Get in Touch</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
     <section class="hero">
       <h1>{{ hero_heading }}</h1>
@@ -230,22 +235,22 @@ body {
 
     <section class="feature-grid">
       <div class="card">
-        <img src="assets/{{ feature_imgs[0] }}" alt="Adventure-Focused">
+        <img src="assets/{{ feature_imgs[0] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Adventure-Focused">
         <h3>{{ feature1_title }}</h3>
         <p>{{ feature1_text }}</p>
       </div>
       <div class="card">
-        <img src="assets/{{ feature_imgs[1] }}" alt="Refined & Exciting">
+        <img src="assets/{{ feature_imgs[1] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Refined & Exciting">
         <h3>{{ feature2_title }}</h3>
         <p>{{ feature2_text }}</p>
       </div>
       <div class="card">
-        <img src="assets/{{ feature_imgs[2] }}" alt="Concise & Punchy">
+        <img src="assets/{{ feature_imgs[2] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Concise & Punchy">
         <h3>{{ feature3_title }}</h3>
         <p>{{ feature3_text }}</p>
       </div>
       <div class="card">
-        <img src="assets/{{ feature_imgs[3] }}" alt="Ultimate Thrills">
+        <img src="assets/{{ feature_imgs[3] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Ultimate Thrills">
         <h3>{{ feature4_title }}</h3>
         <p>{{ feature4_text }}</p>
       </div>
@@ -259,36 +264,36 @@ body {
 
     <section class="image-links">
       <div class="image-card">
-        <img src="assets/{{ retreat_imgs[0] }}" alt="Waterside Retreats">
+        <img src="assets/{{ retreat_imgs[0] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Waterside Retreats">
         <h3>{{ link1_title }}</h3>
       </div>
       <div class="image-card">
-        <img src="assets/{{ retreat_imgs[1] }}" alt="Into the Forest">
+        <img src="assets/{{ retreat_imgs[1] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Into the Forest">
         <h3>{{ link2_title }}</h3>
       </div>
     </section>
   </main>
   <section class="extended-grid">
   <div class="card">
-    <img src="assets/{{ extended_imgs[0] }}" alt="Waterside Retreats">
+    <img src="assets/{{ extended_imgs[0] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Waterside Retreats">
     <h3>{{ extended1_title }}</h3>
     <p>{{ extended1_text }}</p>
     <button class="cta small">{{ extended1_button }}</button>
   </div>
   <div class="card">
-    <img src="assets/{{ extended_imgs[1] }}" alt="Into the Forest">
+    <img src="assets/{{ extended_imgs[1] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Into the Forest">
     <h3>{{ extended2_title }}</h3>
     <p>{{ extended2_text }}</p>
     <button class="cta small">{{ extended2_button }}</button>
   </div>
   <div class="card">
-    <img src="assets/{{ extended_imgs[2] }}" alt="Canada PlayStay">
+    <img src="assets/{{ extended_imgs[2] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Canada PlayStay">
     <h3>{{ extended3_title }}</h3>
     <p>{{ extended3_text }}</p>
     <button class="cta small">{{ extended3_button }}</button>
   </div>
   <div class="card">
-    <img src="assets/{{ extended_imgs[3] }}" alt="Casino Royale">
+    <img src="assets/{{ extended_imgs[3] }}" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Casino Royale">
     <h3>{{ extended4_title }}</h3>
     <p>{{ extended4_text }}</p>
     <button class="cta small">{{ extended4_button }}</button>
@@ -333,12 +338,13 @@ body {
       </ul>
     </div>
     <div class="footer-social">
-      <a href="#"><img src="assets/fb-icon.svg" alt="Facebook"></a>
-      <a href="#"><img src="assets/twitter-icon.svg" alt="Twitter"></a>
-      <a href="#"><img src="assets/youtube-icon.svg" alt="YouTube"></a>
+      <a href="#"><img src="assets/fb-icon.svg" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Facebook"></a>
+      <a href="#"><img src="assets/twitter-icon.svg" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="Twitter"></a>
+      <a href="#"><img src="assets/youtube-icon.svg" onerror="this.onerror=null;this.src='/assets/default.svg'" alt="YouTube"></a>
     </div>
   </div>
 </footer>
 
+  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
