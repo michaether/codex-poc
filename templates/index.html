@@ -58,8 +58,30 @@
         <label for="prompt" class="form-label">Describe your hotel website:</label>
         <textarea class="form-control" id="prompt" name="prompt" rows="4" required placeholder='Describe your site. Include the hotel name after the text "hotel name:"'></textarea>
     </div>
+    <div class="mb-3">
+        <label class="form-label d-block">Choose Template:</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="template" id="templateHotel" value="hotel" checked>
+            <label class="form-check-label" for="templateHotel">Hotel</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="template" id="templateLifestyle" value="lifestyle">
+            <label class="form-check-label" for="templateLifestyle">Lifestyle</label>
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary">Generate</button>
 </form>
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <h5 class="text-center">Hotel Preview</h5>
+        <iframe src="/preview/hotel" style="height:40vh;"></iframe>
+    </div>
+    <div class="col-md-6 mt-3 mt-md-0">
+        <h5 class="text-center">Lifestyle Preview</h5>
+        <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
+    </div>
+</div>
 <h2 class="mb-3 text-center">Previously Generated Sites</h2>
 {% for site in sites %}
 <div class="preview-section shadow-sm">
