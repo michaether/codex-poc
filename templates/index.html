@@ -57,6 +57,15 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
+        .example-prompt {
+            background-color: #40414f;
+            color: #ececf1;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         #loadingOverlay {
             position: fixed;
             top: 0;
@@ -121,12 +130,18 @@
     <div class="col-md-6">
         <div class="preview-card">
             <h5 class="text-center">Hotel Preview</h5>
+            <div class="example-prompt">
+                <strong>Example:</strong> I want a boutique Hotel reservation website, elegant in content, visuals and design. hotel name:{hotel-name}. and the content reflects it is a casino-centric hotel, with spa services
+            </div>
             <iframe src="/preview/hotel" style="height:40vh;"></iframe>
         </div>
     </div>
     <div class="col-md-6">
         <div class="preview-card">
             <h5 class="text-center">Lifestyle Preview</h5>
+            <div class="example-prompt">
+                <strong>Example:</strong> I want a health article website, elegant in content, visuals and design. site name:"site-name". and the content reflects it is a health and lifestyle articles
+            </div>
             <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
         </div>
     </div>
