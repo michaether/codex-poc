@@ -90,6 +90,7 @@
         <h5>{{ site.file }}</h5>
         <p>{{ site.prompt }}</p>
         <a href="/sites/{{ site.file }}" target="_blank" class="btn btn-primary btn-sm">Open Site</a>
+        <a href="/download/{{ site.file.split('/')[0] }}" class="btn btn-success btn-sm ms-2">Download Files</a>
     </div>
 </div>
 {% else %}

@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import openai
@@ -9,6 +9,8 @@ from datetime import datetime
 import re
 import shutil
 import base64
+import io
+import zipfile
 
 app = FastAPI()
 
@@ -149,7 +151,30 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
     sites_data.append({'prompt': prompt, 'file': site_entry})
     with open(DATA_FILE, 'w') as f:
         json.dump(sites_data, f)
-    return templates.TemplateResponse('generated.html', {'request': request, 'file': site_entry})
+    return templates.TemplateResponse(
+        'generated.html',
+        {'request': request, 'file': site_entry, 'folder': folder_name}
+    )
+
+
+@app.get('/download/{folder}')
+async def download_site(folder: str):
+    """Download a generated site as a zip archive."""
+    folder_path = os.path.join('generated_sites', folder)
+    if not os.path.isdir(folder_path):
+        return HTMLResponse('Site not found', status_code=404)
+
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root_dir, _, files in os.walk(folder_path):
+            for name in files:
+                file_path = os.path.join(root_dir, name)
+                arcname = os.path.relpath(file_path, folder_path)
+                zipf.write(file_path, arcname)
+    buffer.seek(0)
+
+    headers = {'Content-Disposition': f'attachment; filename={folder}.zip'}
+    return StreamingResponse(buffer, media_type='application/zip', headers=headers)
 
 
 @app.get('/preview/{template}', response_class=HTMLResponse)
