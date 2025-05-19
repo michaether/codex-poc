@@ -20,7 +20,7 @@ This proof of concept demonstrates a very simple hotel website generator. A Fast
    ```
 3. Open `http://localhost:8085` in your browser.
 
-Generated sites are saved in the `generated_sites/` folder. A minimal Bootstrap CSS file is included in `static/` for offline use. Images referenced by the generated pages live in the `assets/` directory, served at `/assets`. The HTML layout lives in `templates/template_v2.html`; OpenAI only supplies the text content inserted into that template.
+Generated sites are saved in the `generated_sites/` folder. A minimal Bootstrap CSS file is included in `static/` for offline use. Images referenced by the generated pages live in the `assets/` directory, served at `/assets`. The HTML layout lives in `templates/hotel.html`; OpenAI only supplies the text content inserted into that template.
 OpenAI now returns text for many sections such as feature cards and benefits which populate this template.
 
 OPENAI_API_KEY=your-key-here uvicorn backend.main:app --reload

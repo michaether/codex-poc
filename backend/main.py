@@ -63,7 +63,7 @@ async def generate(request: Request, prompt: str = Form(...)):
         response_format={"type": "json_object"},
     )
     data = json.loads(response.choices[0].message.content)
-    content = templates.get_template('template_v2.html').render(**data)
+    content = templates.get_template('hotel.html').render(**data)
 
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     # extract hotel name after "hotel name:" and slugify
