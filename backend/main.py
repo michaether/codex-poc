@@ -111,6 +111,11 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         selected = random.sample(files, min(len(files), 17))
         for name in selected:
             shutil.copy(os.path.join(asset_dir, name), os.path.join(assets_path, name))
+        # ensure hero_1.jpg is always available since the template references it
+        hero_image = 'hero_1.jpg'
+        if hero_image not in selected and hero_image in files:
+            shutil.copy(os.path.join(asset_dir, hero_image), os.path.join(assets_path, hero_image))
+            selected.append(hero_image)
         data['images'] = selected
 
     # render page with selected images
