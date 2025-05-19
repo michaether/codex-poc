@@ -1,6 +1,6 @@
 # Ignore generated websites content
 # /generated_sites/*.html
-/generated_sites/sites.json
+
 __pycache__/
 
 .git
@@ -8,4 +8,4 @@ __pycache__/
 .env
 venv
 
-generated_sites
+/generated_sites/*
