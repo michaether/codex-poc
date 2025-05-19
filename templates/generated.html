@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <title>Site Generated</title>
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <style>
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: 0;
+        }
+    </style>
 </head>
 <body class="container py-4">
-<h1>Your website has been generated!</h1>
-<p><a href="/sites/{{ file }}" target="_blank" class="btn btn-success">View Site</a></p>
-<p><a href="/download/{{ folder }}" class="btn btn-primary">Download Files</a></p>
-<p><a href="/" class="btn btn-secondary">Back</a></p>
+    <h1 class="mb-4">Your website has been generated!</h1>
+    <div class="d-flex gap-2 mb-3">
+        <a href="/sites/{{ file }}" target="_blank" class="btn btn-success">Visit Site</a>
+        <a href="/download/{{ folder }}" class="btn btn-primary">Download Files</a>
+        <a href="/" class="btn btn-secondary">Back</a>
+    </div>
+    <iframe src="/sites/{{ file }}"></iframe>
 </body>
 </html>
