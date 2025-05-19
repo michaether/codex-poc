@@ -8,10 +8,32 @@ import json
 from datetime import datetime
 import re
 import shutil
-import base64
 import io
 import zipfile
 import random
+
+IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.webp'}
+
+
+def list_images(src: str) -> list[str]:
+    """Return names of image files in *src* matching ``IMAGE_EXTS``."""
+    return [
+        f for f in os.listdir(src)
+        if os.path.splitext(f)[1].lower() in IMAGE_EXTS
+        and not f.endswith('Zone.Identifier')
+    ]
+
+
+def copy_images(src: str, dst: str, count: int) -> tuple[list[str], list[str]]:
+    """Copy up to ``count`` images from *src* to *dst*.
+
+    Returns the selected filenames and the full list of available files.
+    """
+    files = list_images(src)
+    selected = random.sample(files, min(len(files), count))
+    for name in selected:
+        shutil.copy(os.path.join(src, name), os.path.join(dst, name))
+    return selected, files
 
 app = FastAPI()
 
@@ -41,12 +63,10 @@ else:
 
 templates = Jinja2Templates(directory='templates')
 
-# Home page: display form and list of generated sites
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse('index.html', {'request': request, 'sites': list(reversed(sites_data))})
 
-# POST endpoint to generate site using OpenAI
 @app.post('/generate', response_class=HTMLResponse)
 async def generate(request: Request, prompt: str = Form(...), template: str = Form('hotel')):
     """Generate website HTML/CSS/JS using OpenAI based on user prompt."""
@@ -66,6 +86,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         "benefit2_title, benefit2_text, benefit3_title, benefit3_text.")
     user_message = f"User description: {prompt}"
     key = f"{prompt}|{template}"
+    # Reuse cached response if available
     if key in cache_data:
         data = cache_data[key]
     else:
@@ -82,7 +103,6 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         cache_data[key] = data
         with open(CACHE_FILE, 'w') as f:
             json.dump(cache_data, f)
-    # templates were moved under subfolders; update paths accordingly
     template_file = (
         'hotel/hotel_index.html'
         if template == 'hotel'
@@ -103,18 +123,12 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
     # copy required assets into the folder
     if template == 'hotel':
         asset_dir = os.path.join('assets', 'hotel')
-        files = [f for f in os.listdir(asset_dir)
-                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
-                 and not f.endswith('Zone.Identifier')]
-        selected = random.sample(files, min(len(files), 12))
+        selected, _ = copy_images(asset_dir, assets_path, 12)
         hero_bg = selected[0]
         feature_imgs = selected[1:5]
         retreat_imgs = selected[5:7]
         extended_imgs = selected[7:11]
         casino_bg = selected[11] if len(selected) > 11 else selected[0]
-
-        for name in selected:
-            shutil.copy(os.path.join(asset_dir, name), os.path.join(assets_path, name))
 
         data.update({
             'hero_bg': hero_bg,
@@ -125,12 +139,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         })
     else:
         asset_dir = os.path.join('assets', 'lifestyle')
-        files = [f for f in os.listdir(asset_dir)
-                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
-                 and not f.endswith('Zone.Identifier')]
-        selected = random.sample(files, min(len(files), 17))
-        for name in selected:
-            shutil.copy(os.path.join(asset_dir, name), os.path.join(assets_path, name))
+        selected, files = copy_images(asset_dir, assets_path, 17)
         # ensure hero_1.jpg is always available since the template references it
         hero_image = 'hero_1.jpg'
         if hero_image not in selected and hero_image in files:
@@ -138,7 +147,6 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             selected.append(hero_image)
         data['images'] = selected
 
-    # render page with selected images
     content = templates.get_template(template_file).render(**data)
 
     filepath = os.path.join(folder_path, 'index.html')
@@ -243,7 +251,6 @@ async def preview_template(template: str):
         'benefit3_title': 'Benefit 3',
         'benefit3_text': 'Benefit 3 text',
     }
-    # templates were moved under subfolders; update paths accordingly
     template_file = (
         'hotel/hotel_index.html'
         if template == 'hotel'
@@ -252,9 +259,7 @@ async def preview_template(template: str):
 
     if template == 'hotel':
         asset_dir = os.path.join('assets', 'hotel')
-        files = [f for f in os.listdir(asset_dir)
-                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
-                 and not f.endswith('Zone.Identifier')]
+        files = list_images(asset_dir)
         selected = random.sample(files, min(len(files), 12))
         demo.update({
             'hero_bg': '/assets/hotel/' + selected[0],
@@ -265,9 +270,7 @@ async def preview_template(template: str):
         })
     else:
         asset_dir = os.path.join('assets', 'lifestyle')
-        files = [f for f in os.listdir(asset_dir)
-                 if os.path.splitext(f)[1].lower() in {'.jpg', '.jpeg', '.png', '.webp'}
-                 and not f.endswith('Zone.Identifier')]
+        files = list_images(asset_dir)
         selected = random.sample(files, min(len(files), 17))
         demo['images'] = ['/assets/lifestyle/' + f for f in selected]
 
