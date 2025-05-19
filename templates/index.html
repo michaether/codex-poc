@@ -49,6 +49,13 @@
             border-radius: 0.5rem;
             padding: 1rem;
         }
+
+        .preview-card {
+            background-color: #202123;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body class="container py-4">
@@ -72,14 +79,18 @@
     <button type="submit" class="btn btn-primary">Generate</button>
 </form>
 
-<div class="row mb-5">
+<div class="row mb-5 g-4">
     <div class="col-md-6">
-        <h5 class="text-center">Hotel Preview</h5>
-        <iframe src="/preview/hotel" style="height:40vh;"></iframe>
+        <div class="preview-card">
+            <h5 class="text-center">Hotel Preview</h5>
+            <iframe src="/preview/hotel" style="height:40vh;"></iframe>
+        </div>
     </div>
-    <div class="col-md-6 mt-3 mt-md-0">
-        <h5 class="text-center">Lifestyle Preview</h5>
-        <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
+    <div class="col-md-6">
+        <div class="preview-card">
+            <h5 class="text-center">Lifestyle Preview</h5>
+            <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
+        </div>
     </div>
 </div>
 <h2 class="mb-3 text-center">Previously Generated Sites</h2>
