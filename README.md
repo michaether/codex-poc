@@ -20,7 +20,7 @@ This proof of concept demonstrates a very simple hotel website generator. A Fast
    ```
 3. Open `http://localhost:8085` in your browser.
 
-Generated sites are saved in the `generated_sites/` folder. The full Bootstrap library is bundled in `static/bootstrap/` and can be copied into generated sites if desired. Each site now contains an `assets/` subfolder holding its images and icons. The HTML layout lives in `templates/hotel.html`; OpenAI only supplies the text content inserted into that template.
+Generated sites are saved in the `generated_sites/` folder. The full Bootstrap library is bundled in `static/bootstrap/` and can be copied into generated sites if desired. Each site now contains an `assets/` subfolder holding its images and icons. The HTML layout lives in `templates/hotel/hotel_index.html`; OpenAI only supplies the text content inserted into that template.
 OpenAI now returns text for many sections such as feature cards and benefits which populate this template.
 
 ### Hero Images
