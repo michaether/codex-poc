@@ -4,24 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
   <style>
-    body { font-family: Arial, sans-serif; padding: 2rem; }
-    h1 { margin-bottom: 1.5rem; }
-    ul { list-style: disc; padding-left: 2rem; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .comparison-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .comparison-item {
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: .25rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>{{ hero_heading }}</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">{{ title }}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Comparison</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="py-5 text-center bg-light">
+    <div class="container">
+      <h1 class="display-5">{{ hero_heading }}</h1>
+    </div>
   </header>
-  <main>
-    <ul>
-      <li>{{ comparison1 }}</li>
-      <li>{{ comparison2 }}</li>
-      <li>{{ comparison3 }}</li>
-      <li>{{ comparison4 }}</li>
-      <li>{{ comparison5 }}</li>
-    </ul>
+  <main class="container py-4">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <ul class="comparison-list">
+          <li class="comparison-item">{{ comparison1 }}</li>
+          <li class="comparison-item">{{ comparison2 }}</li>
+          <li class="comparison-item">{{ comparison3 }}</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="comparison-list">
+          <li class="comparison-item">{{ comparison4 }}</li>
+          <li class="comparison-item">{{ comparison5 }}</li>
+        </ul>
+      </div>
+    </div>
   </main>
+  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
