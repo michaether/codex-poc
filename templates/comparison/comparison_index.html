@@ -7,17 +7,37 @@
   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(#f5f7fa, #e3e9f0);
       color: #333;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    }
+    .nav-link {
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ffd700;
+    }
+    header {
+      background: linear-gradient(90deg, #8f94fb, #4e54c8);
+      color: #fff;
     }
     .table td, .table th {
       vertical-align: middle;
     }
+    thead {
+      background-color: #4e54c8;
+      color: #fff;
+    }
+    tbody tr:hover {
+      background-color: #f2f2f2;
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +51,7 @@
       </div>
     </div>
   </nav>
-  <header class="py-5 text-center bg-light">
+  <header class="py-5 text-center">
     <div class="container">
       <h1 class="display-5">{{ hero_heading }}</h1>
       <p class="lead">{{ hero_text }}</p>
@@ -39,8 +59,8 @@
   </header>
   <main class="container py-4">
     <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead class="table-light">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
           <tr>
             <th></th>
             <th>{{ product1_name }}</th>
@@ -48,6 +68,16 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <th scope="row">Price</th>
+            <td>{{ product1_price }}</td>
+            <td>{{ product2_price }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Rating</th>
+            <td>{{ product1_rating }}</td>
+            <td>{{ product2_rating }}</td>
+          </tr>
           <tr>
             <th scope="row">Pros</th>
             <td>{{ product1_pros }}</td>
