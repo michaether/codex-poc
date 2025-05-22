@@ -95,6 +95,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             "conclusion_title, conclusion_text. "
             "List items for pros and cons should be provided as a "
             "semicolon-separated string, not as a JSON array."
+
         )
     user_message = f"User description: {prompt}"
     key = f"{prompt}|{template}"
