@@ -11,16 +11,8 @@
       background-color: #f8f9fa;
       color: #333;
     }
-    .comparison-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    .comparison-item {
-      background-color: #fff;
-      border: 1px solid #dee2e6;
-      border-radius: .25rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    .table td, .table th {
+      vertical-align: middle;
     }
   </style>
 </head>
@@ -42,23 +34,34 @@
   <header class="py-5 text-center bg-light">
     <div class="container">
       <h1 class="display-5">{{ hero_heading }}</h1>
+      <p class="lead">{{ hero_text }}</p>
     </div>
   </header>
   <main class="container py-4">
-    <div class="row g-4">
-      <div class="col-md-6">
-        <ul class="comparison-list">
-          <li class="comparison-item">{{ comparison1 }}</li>
-          <li class="comparison-item">{{ comparison2 }}</li>
-          <li class="comparison-item">{{ comparison3 }}</li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <ul class="comparison-list">
-          <li class="comparison-item">{{ comparison4 }}</li>
-          <li class="comparison-item">{{ comparison5 }}</li>
-        </ul>
-      </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th></th>
+            <th>{{ product1_name }}</th>
+            <th>{{ product2_name }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Pros</th>
+            <td>{{ product1_pros }}</td>
+            <td>{{ product2_pros }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Cons</th>
+            <td>{{ product1_cons }}</td>
+            <td>{{ product2_cons }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="mt-4">{{ conclusion_title }}</h2>
+      <p>{{ conclusion_text }}</p>
     </div>
   </main>
   <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
