@@ -88,8 +88,9 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         system_message = (
             "You generate JSON snippets for a product comparison page. "
             "Return only JSON with keys: title, hero_heading, hero_text, "
-            "item1_title, item1_text, item2_title, item2_text, conclusion_title, "
-            "conclusion_text."
+            "product1_name, product1_pros, product1_cons, "
+            "product2_name, product2_pros, product2_cons, "
+            "conclusion_title, conclusion_text."
         )
     user_message = f"User description: {prompt}"
     key = f"{prompt}|{template}"
@@ -118,10 +119,13 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         template_file = 'comparison/comparison_index.html'
 
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
-    # extract hotel name after "hotel name:" and slugify
-    match = re.search(r'hotel name:\s*"?([^"\n]+)"?', prompt, re.IGNORECASE)
-    hotel_name = match.group(1) if match else 'hotel'
-    slug = re.sub(r'[^a-z0-9]+', '_', hotel_name.lower()).strip('_')
+    if template == 'hotel':
+        match = re.search(r'hotel name:\s*"?([^"\n]+)"?', prompt, re.IGNORECASE)
+        site_name = match.group(1) if match else 'hotel'
+    else:
+        match = re.search(r'site name:\s*"?([^"\n]+)"?', prompt, re.IGNORECASE)
+        site_name = match.group(1) if match else template
+    slug = re.sub(r'[^a-z0-9]+', '_', site_name.lower()).strip('_')
 
     folder_name = f'site_{timestamp}_{slug}'
     folder_path = os.path.join('generated_sites', folder_name)
@@ -242,11 +246,15 @@ async def preview_template(template: str):
         demo = {
             'title': 'Demo Site',
             'hero_heading': 'Welcome!',
-            'comparison1': 'First option',
-            'comparison2': 'Second option',
-            'comparison3': 'Third option',
-            'comparison4': 'Fourth option',
-            'comparison5': 'Fifth option',
+            'hero_text': 'Sample hero text.',
+            'product1_name': 'Product 1',
+            'product1_pros': 'Pros for product 1',
+            'product1_cons': 'Cons for product 1',
+            'product2_name': 'Product 2',
+            'product2_pros': 'Pros for product 2',
+            'product2_cons': 'Cons for product 2',
+            'conclusion_title': 'Conclusion',
+            'conclusion_text': 'Summary text.',
         }
         html = templates.get_template('comparison/comparison_index.html').render(**demo)
         return HTMLResponse(html)
