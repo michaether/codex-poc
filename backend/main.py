@@ -84,6 +84,13 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         "extended4_title, extended4_text, extended4_button, "
         "benefits_heading, benefit1_title, benefit1_text, "
         "benefit2_title, benefit2_text, benefit3_title, benefit3_text.")
+    if template == "comparison":
+        system_message = (
+            "You generate JSON snippets for a product comparison page. "
+            "Return only JSON with keys: title, hero_heading, hero_text, "
+            "item1_title, item1_text, item2_title, item2_text, conclusion_title, "
+            "conclusion_text."
+        )
     user_message = f"User description: {prompt}"
     key = f"{prompt}|{template}"
     # Reuse cached response if available
@@ -103,11 +110,12 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         cache_data[key] = data
         with open(CACHE_FILE, 'w') as f:
             json.dump(cache_data, f)
-    template_file = (
-        'hotel/hotel_index.html'
-        if template == 'hotel'
-        else 'lifestyle/lifestyle_index.html'
-    )
+    if template == 'hotel':
+        template_file = 'hotel/hotel_index.html'
+    elif template == 'lifestyle':
+        template_file = 'lifestyle/lifestyle_index.html'
+    else:
+        template_file = 'comparison/comparison_index.html'
 
     timestamp = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     # extract hotel name after "hotel name:" and slugify
@@ -137,7 +145,7 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             'retreat_imgs': retreat_imgs,
             'extended_imgs': extended_imgs,
         })
-    else:
+    elif template == 'lifestyle':
         asset_dir = os.path.join('assets', 'lifestyle')
         selected, files = copy_images(asset_dir, assets_path, 17)
         # ensure hero_1.jpg is always available since the template references it
@@ -146,6 +154,9 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             shutil.copy(os.path.join(asset_dir, hero_image), os.path.join(assets_path, hero_image))
             selected.append(hero_image)
         data['images'] = selected
+    else:
+        # no asset handling needed for comparison template
+        pass
 
     content = templates.get_template(template_file).render(**data)
 
@@ -181,13 +192,16 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             title = page.replace('_', ' ').replace('.html', '').title()
             with open(os.path.join(folder_path, page), 'w') as f:
                 f.write(placeholder.format(title))
-    else:
+    elif template == 'lifestyle':
         # copy static lifestyle section pages
         lifestyle_pages = ['health.html', 'pets.html', 'tech.html']
         for page in lifestyle_pages:
             src = os.path.join('templates', 'lifestyle', page)
             dst = os.path.join(folder_path, page)
             shutil.copy(src, dst)
+    else:
+        # no additional pages for comparison template
+        pass
 
     site_entry = f"{folder_name}/index.html"
     sites_data.append({'prompt': prompt, 'file': site_entry})
