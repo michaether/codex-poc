@@ -163,20 +163,31 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         with open(os.path.join(assets_path, name), 'w') as f:
             f.write(content_str)
 
-    # create placeholder pages for nav links
-    pages = [
-        'who_we_are.html',
-        'waterside_retreats.html',
-        'into_the_forest.html',
-        'canada_playstay.html',
-        'promotions.html',
-        'get_in_touch.html',
-    ]
-    placeholder = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>{0}</title></head><body><h1>{0}</h1><p>Placeholder page.</p></body></html>"
-    for page in pages:
-        title = page.replace('_', ' ').replace('.html', '').title()
-        with open(os.path.join(folder_path, page), 'w') as f:
-            f.write(placeholder.format(title))
+    if template == 'hotel':
+        # create placeholder pages for nav links
+        pages = [
+            'who_we_are.html',
+            'waterside_retreats.html',
+            'into_the_forest.html',
+            'canada_playstay.html',
+            'promotions.html',
+            'get_in_touch.html',
+        ]
+        placeholder = (
+            "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>{0}</title></head>"
+            "<body><h1>{0}</h1><p>Placeholder page.</p></body></html>"
+        )
+        for page in pages:
+            title = page.replace('_', ' ').replace('.html', '').title()
+            with open(os.path.join(folder_path, page), 'w') as f:
+                f.write(placeholder.format(title))
+    else:
+        # copy static lifestyle section pages
+        lifestyle_pages = ['health.html', 'pets.html', 'tech.html']
+        for page in lifestyle_pages:
+            src = os.path.join('templates', 'lifestyle', page)
+            dst = os.path.join(folder_path, page)
+            shutil.copy(src, dst)
 
     site_entry = f"{folder_name}/index.html"
     sites_data.append({'prompt': prompt, 'file': site_entry})
