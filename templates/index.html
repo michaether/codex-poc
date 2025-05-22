@@ -115,6 +115,10 @@
             <input class="form-check-input" type="radio" name="template" id="templateLifestyle" value="lifestyle">
             <label class="form-check-label" for="templateLifestyle">Lifestyle</label>
         </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="template" id="templateComparison" value="comparison">
+            <label class="form-check-label" for="templateComparison">Comparison</label>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary" id="generateBtn">Generate</button>
 </form>
@@ -127,7 +131,7 @@
 </div>
 
 <div class="row mb-5 g-5">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="preview-card">
             <h5 class="text-center">Hotel Preview</h5>
             <div class="example-prompt">
@@ -136,13 +140,22 @@
             <iframe src="/preview/hotel" style="height:40vh;"></iframe>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="preview-card">
             <h5 class="text-center">Lifestyle Preview</h5>
             <div class="example-prompt">
                 <strong>Example:</strong> I want a health article website, elegant in content, visuals and design. site name:"site-name". and the content reflects it is a health and lifestyle articles
             </div>
             <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="preview-card">
+            <h5 class="text-center">Comparison Preview</h5>
+            <div class="example-prompt">
+                <strong>Example:</strong> Show a comparison of two products highlighting key differences. site name:"best-choices".
+            </div>
+            <iframe src="/preview/comparison" style="height:40vh;"></iframe>
         </div>
     </div>
 </div>
