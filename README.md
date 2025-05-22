@@ -37,3 +37,8 @@ found in this file, the stored JSON is reused instead of requesting new content
 from the API. Any new completions are written back to the cache automatically.
 
 OPENAI_API_KEY=your-key-here uvicorn backend.main:app --reload
+
+### Template Previews
+
+Use `/preview/{template}` to see a demo of any built-in template. Available
+options are `hotel`, `lifestyle`, and `comparison`.
