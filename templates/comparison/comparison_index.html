@@ -7,17 +7,43 @@
   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(#f5f7fa, #e3e9f0);
       color: #333;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    }
+    .nav-link {
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ffd700;
+    }
+    header {
+      background: linear-gradient(90deg, #8f94fb, #4e54c8);
+      color: #fff;
     }
     .table td, .table th {
       vertical-align: middle;
     }
+    thead {
+      background-color: #4e54c8;
+      color: #fff;
+    }
+    tbody tr:hover {
+      background-color: #f2f2f2;
+    }
+    .conclusion-card {
+      background-color: #e9f7ef;
+      border-left: 5px solid #19c37d;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,12 +52,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Comparison</a></li>
+          <li class="nav-item"><a class="nav-link" href="comparison_details.html">Comparison</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <header class="py-5 text-center bg-light">
+  <header class="py-5 text-center">
     <div class="container">
       <h1 class="display-5">{{ hero_heading }}</h1>
       <p class="lead">{{ hero_text }}</p>
@@ -39,8 +65,8 @@
   </header>
   <main class="container py-4">
     <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead class="table-light">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
           <tr>
             <th></th>
             <th>{{ product1_name }}</th>
@@ -49,19 +75,57 @@
         </thead>
         <tbody>
           <tr>
+            <th scope="row">Price</th>
+            <td>{{ product1_price }}</td>
+            <td>{{ product2_price }}</td>
+          </tr>
+          {% set p1_rating = product1_rating.split('/')[0]|float %}
+          {% set p2_rating = product2_rating.split('/')[0]|float %}
+          <tr>
+            <th scope="row">Rating</th>
+            <td>{{ product1_rating }}{% if p1_rating > p2_rating %} <span class="text-success">✅</span>{% endif %}</td>
+            <td>{{ product2_rating }}{% if p2_rating > p1_rating %} <span class="text-success">✅</span>{% endif %}</td>
+          </tr>
+          <tr>
             <th scope="row">Pros</th>
-            <td>{{ product1_pros }}</td>
-            <td>{{ product2_pros }}</td>
+            <td>
+              <ul class="mb-0 list-unstyled">
+                {% for item in product1_pros.split(';') %}
+                <li>{{ item.strip() }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+            <td>
+              <ul class="mb-0 list-unstyled">
+                {% for item in product2_pros.split(';') %}
+                <li>{{ item.strip() }}</li>
+                {% endfor %}
+              </ul>
+            </td>
           </tr>
           <tr>
             <th scope="row">Cons</th>
-            <td>{{ product1_cons }}</td>
-            <td>{{ product2_cons }}</td>
+            <td>
+              <ul class="mb-0 list-unstyled">
+                {% for item in product1_cons.split(';') %}
+                <li>{{ item.strip() }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+            <td>
+              <ul class="mb-0 list-unstyled">
+                {% for item in product2_cons.split(';') %}
+                <li>{{ item.strip() }}</li>
+                {% endfor %}
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
-      <h2 class="mt-4">{{ conclusion_title }}</h2>
-      <p>{{ conclusion_text }}</p>
+      <div class="conclusion-card">
+        <h2 class="m-0">{{ conclusion_title }}</h2>
+        <p class="mb-0">{{ conclusion_text }}</p>
+      </div>
     </div>
   </main>
   <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
