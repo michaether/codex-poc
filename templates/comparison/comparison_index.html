@@ -16,24 +16,24 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo">{{ title }}</div>
-    <nav class="nav-menu">
-      <a href="#">Home</a>
-      <a href="#">Reviews</a>
-      <a href="#">Guides</a>
-      <a href="#">Contact</a>
-    </nav>
+ <header>
+    <h1>{{ hero_heading }}</h1>
+    <p>{{ hero_text }}</p>
   </header>
   <main>
-    <ul>
-      <li>comparison1</li>
-      <li>comparison2</li>
-      <li>comparison3</li>
-      <li>comparison4</li>
-      <li>comparison5</li>
-    </ul>
+    <section>
+      <h2>{{ item1_title }}</h2>
+      <p>{{ item1_text }}</p>
+    </section>
+    <section>
+      <h2>{{ item2_title }}</h2>
+      <p>{{ item2_text }}</p>
+    </section>
+    <section>
+      <h2>{{ conclusion_title }}</h2>
+      <p>{{ conclusion_text }}</p>
+    </section>
   </main>
-  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
