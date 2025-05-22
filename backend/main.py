@@ -15,6 +15,32 @@ import random
 IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.webp'}
 
 
+ICON_KEYWORDS = {
+    'phone': 'phone',
+    'laptop': 'laptop',
+    'camera': 'camera',
+    'watch': 'smartwatch',
+    'tv': 'tv',
+    'television': 'tv',
+    'tablet': 'tablet',
+    'headphone': 'headphones',
+    'speaker': 'speaker',
+    'printer': 'printer',
+    'car': 'car-front',
+    'book': 'book',
+    'chair': 'chair',
+}
+
+
+def choose_icon(name: str) -> str:
+    """Return a bootstrap icon name based on keywords in *name*."""
+    lowered = name.lower()
+    for key, icon in ICON_KEYWORDS.items():
+        if key in lowered:
+            return icon
+    return 'box'
+
+
 def list_images(src: str) -> list[str]:
     """Return names of image files in *src* matching ``IMAGE_EXTS``."""
     return [
@@ -116,6 +142,10 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
         cache_data[key] = data
         with open(CACHE_FILE, 'w') as f:
             json.dump(cache_data, f)
+
+    if template == 'comparison':
+        data['product1_icon'] = choose_icon(data.get('product1_name', ''))
+        data['product2_icon'] = choose_icon(data.get('product2_name', ''))
     if template == 'hotel':
         template_file = 'hotel/hotel_index.html'
     elif template == 'lifestyle':
@@ -253,11 +283,13 @@ async def preview_template(template: str):
             'hero_heading': 'Welcome!',
             'hero_text': 'Sample hero text.',
             'product1_name': 'Product 1',
+            'product1_icon': choose_icon('Product 1'),
             'product1_price': '$49',
             'product1_rating': '4.5/5',
             'product1_pros': 'Fast; Reliable',
             'product1_cons': 'Expensive; Limited colors',
             'product2_name': 'Product 2',
+            'product2_icon': choose_icon('Product 2'),
             'product2_price': '$59',
             'product2_rating': '4/5',
             'product2_pros': 'Affordable; Stylish',
