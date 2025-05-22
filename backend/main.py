@@ -235,8 +235,21 @@ async def download_site(folder: str):
 
 @app.get('/preview/{template}', response_class=HTMLResponse)
 async def preview_template(template: str):
-    if template not in {'hotel', 'lifestyle'}:
+    if template not in {'hotel', 'lifestyle', 'comparison'}:
         return HTMLResponse('Template not found', status_code=404)
+
+    if template == 'comparison':
+        demo = {
+            'title': 'Demo Site',
+            'hero_heading': 'Welcome!',
+            'comparison1': 'First option',
+            'comparison2': 'Second option',
+            'comparison3': 'Third option',
+            'comparison4': 'Fourth option',
+            'comparison5': 'Fifth option',
+        }
+        html = templates.get_template('comparison/comparison_index.html').render(**demo)
+        return HTMLResponse(html)
 
     demo = {
         'title': 'Demo Site',

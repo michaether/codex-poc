@@ -4,36 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.6; }
-    .site-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; border-bottom: 1px solid #eee; }
-    .nav-menu a { margin-left: 1.5rem; text-decoration: none; color: #d64545; font-weight: 500; font-size: 0.9rem; }
-    main { padding: 2rem; max-width: 800px; margin: auto; }
-    ul { list-style: disc; margin-left: 1rem; }
-    li { margin-bottom: 0.5rem; }
+    body { font-family: Arial, sans-serif; padding: 2rem; }
+    h1 { margin-bottom: 1.5rem; }
+    ul { list-style: disc; padding-left: 2rem; }
   </style>
 </head>
 <body>
- <header>
+  <header>
     <h1>{{ hero_heading }}</h1>
-    <p>{{ hero_text }}</p>
   </header>
   <main>
-    <section>
-      <h2>{{ item1_title }}</h2>
-      <p>{{ item1_text }}</p>
-    </section>
-    <section>
-      <h2>{{ item2_title }}</h2>
-      <p>{{ item2_text }}</p>
-    </section>
-    <section>
-      <h2>{{ conclusion_title }}</h2>
-      <p>{{ conclusion_text }}</p>
-    </section>
+    <ul>
+      <li>{{ comparison1 }}</li>
+      <li>{{ comparison2 }}</li>
+      <li>{{ comparison3 }}</li>
+      <li>{{ comparison4 }}</li>
+      <li>{{ comparison5 }}</li>
+    </ul>
   </main>
-
 </body>
 </html>
