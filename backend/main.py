@@ -92,7 +92,10 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             "product1_price, product1_rating, "
             "product2_name, product2_pros, product2_cons, "
             "product2_price, product2_rating, "
-            "conclusion_title, conclusion_text."
+            "conclusion_title, conclusion_text. "
+            "List items for pros and cons should be provided as a "
+            "semicolon-separated string, not as a JSON array."
+
         )
     user_message = f"User description: {prompt}"
     key = f"{prompt}|{template}"
@@ -252,13 +255,13 @@ async def preview_template(template: str):
             'product1_name': 'Product 1',
             'product1_price': '$49',
             'product1_rating': '4.5/5',
-            'product1_pros': 'Pros for product 1',
-            'product1_cons': 'Cons for product 1',
+            'product1_pros': 'Fast; Reliable',
+            'product1_cons': 'Expensive; Limited colors',
             'product2_name': 'Product 2',
             'product2_price': '$59',
             'product2_rating': '4/5',
-            'product2_pros': 'Pros for product 2',
-            'product2_cons': 'Cons for product 2',
+            'product2_pros': 'Affordable; Stylish',
+            'product2_cons': 'Slow updates; Fewer accessories',
             'conclusion_title': 'Conclusion',
             'conclusion_text': 'Summary text.',
         }
