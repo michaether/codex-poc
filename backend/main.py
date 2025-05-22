@@ -89,7 +89,9 @@ async def generate(request: Request, prompt: str = Form(...), template: str = Fo
             "You generate JSON snippets for a product comparison page. "
             "Return only JSON with keys: title, hero_heading, hero_text, "
             "product1_name, product1_pros, product1_cons, "
+            "product1_price, product1_rating, "
             "product2_name, product2_pros, product2_cons, "
+            "product2_price, product2_rating, "
             "conclusion_title, conclusion_text."
         )
     user_message = f"User description: {prompt}"
@@ -248,9 +250,13 @@ async def preview_template(template: str):
             'hero_heading': 'Welcome!',
             'hero_text': 'Sample hero text.',
             'product1_name': 'Product 1',
+            'product1_price': '$49',
+            'product1_rating': '4.5/5',
             'product1_pros': 'Pros for product 1',
             'product1_cons': 'Cons for product 1',
             'product2_name': 'Product 2',
+            'product2_price': '$59',
+            'product2_rating': '4/5',
             'product2_pros': 'Pros for product 2',
             'product2_cons': 'Cons for product 2',
             'conclusion_title': 'Conclusion',
