@@ -192,21 +192,5 @@
 <p>No sites generated yet.</p>
 {% endfor %}
 </body>
-<script>
-    const form = document.querySelector('form');
-    const btn = document.getElementById('generateBtn');
-    form.addEventListener('submit', function () {
-        if (btn) {
-            btn.disabled = true;
-        }
-        document.getElementById('loadingOverlay').style.display = 'flex';
-    });
-
-    document.querySelectorAll('.copy-btn').forEach(function (button) {
-        button.addEventListener('click', function () {
-            const text = this.parentElement.querySelector('.prompt-text').innerText.trim();
-            navigator.clipboard.writeText(text);
-        });
-    });
-</script>
+<script type="module" src="/static/js/index.js"></script>
 </html>
