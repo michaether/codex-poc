@@ -64,6 +64,18 @@
             border-radius: 0.25rem;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.25rem;
+            right: 0.25rem;
+            background: none;
+            border: none;
+            color: #ececf1;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         #loadingOverlay {
@@ -134,8 +146,10 @@
     <div class="col-md-4">
         <div class="preview-card">
             <h5 class="text-center">Hotel Preview</h5>
+            <p><strong>Example:</strong></p>
             <div class="example-prompt">
-                <strong>Example:</strong> I want a boutique Hotel reservation website, elegant in content, visuals and design. hotel name:{hotel-name}. and the content reflects it is a casino-centric hotel, with spa services
+                <span class="prompt-text">I want a boutique Hotel reservation website, elegant in content, visuals and design. hotel name:{hotel-name}. and the content reflects it is a casino-centric hotel, with spa services</span>
+                <button class="copy-btn" type="button" aria-label="Copy">&#128203;</button>
             </div>
             <iframe src="/preview/hotel" style="height:40vh;"></iframe>
         </div>
@@ -143,8 +157,10 @@
     <div class="col-md-4">
         <div class="preview-card">
             <h5 class="text-center">Lifestyle Preview</h5>
+            <p><strong>Example:</strong></p>
             <div class="example-prompt">
-                <strong>Example:</strong> I want a health article website, elegant in content, visuals and design. site name:"site-name". and the content reflects it is a health and lifestyle articles
+                <span class="prompt-text">I want a health article website, elegant in content, visuals and design. site name:&quot;site-name&quot;. and the content reflects it is a health and lifestyle articles</span>
+                <button class="copy-btn" type="button" aria-label="Copy">&#128203;</button>
             </div>
             <iframe src="/preview/lifestyle" style="height:40vh;"></iframe>
         </div>
@@ -152,8 +168,10 @@
     <div class="col-md-4">
         <div class="preview-card">
             <h5 class="text-center">Comparison Preview</h5>
+            <p><strong>Example:</strong></p>
             <div class="example-prompt">
-                <strong>Example:</strong> Show a comparison of two products highlighting key differences. site name:"best-choices". Products: Tesla vs Hyundai IONIQ 6
+                <span class="prompt-text">Show a comparison of two products highlighting key differences. site name:&quot;best-choices&quot;. Products: Tesla vs Hyundai IONIQ 6</span>
+                <button class="copy-btn" type="button" aria-label="Copy">&#128203;</button>
             </div>
             <iframe src="/preview/comparison" style="height:40vh;"></iframe>
         </div>
@@ -182,6 +200,13 @@
             btn.disabled = true;
         }
         document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const text = this.parentElement.querySelector('.prompt-text').innerText.trim();
+            navigator.clipboard.writeText(text);
+        });
     });
 </script>
 </html>
